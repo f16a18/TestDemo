@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="com.ssm.mapper.GrandnavMapper">
+	<resultMap type="com.ssm.po.Navquery" id="navqueryMapper">
+		<id property="f_user_id" column="f_user_id" />
+		<result property="f_username" column="f_username" />
+		<collection property="navCustom" column="f_user_id" ofType="T_NavCustom">    
+            <id property="f_nav_id" column="f_nav_id" javaType="int" jdbcType="INTEGER"/>    
+            <id property="f_next_nav_id" column="f_next_nav_id" javaType="int" jdbcType="INTEGER"/>    
+            <result property="f_isgrand" column="f_isgrand" javaType="int" jdbcType="INTEGER"/> 
+            <result property="f_nav_name" column="f_nav_name" javaType="int" jdbcType="INTEGER"/> 
+            <result property="f_nav_url" column="f_nav_url" javaType="int" jdbcType="INTEGER"/> 
+        </collection> 
+	</resultMap>
+	
+	<!--  定义resultMap -->
+	<select id="findGrandnavByUserid" parameterType="int" resultMap="navqueryMapper">
+		select a.f_user_id
+			  ,a.f_username
+			  ,b.f_nav_id
+			  ,b.f_next_nav_id
+			  ,b.f_isgrand
+			  ,b.f_nav_name
+			  ,b.f_nav_url
+		from t_user a 
+		inner join t_nav b on a.f_user_id = b.f_user_id
+		where a.f_user_id = #{user_id}
+		and f_isgrand = 1
+	</select>
+</mapper>

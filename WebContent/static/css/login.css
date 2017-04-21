@@ -1,0 +1,29 @@
+.login-panel {
+    margin-top: 10%;
+}
+
+.panel-title{
+	text-align: center;
+}
+
+#signin_username{
+	margin-bottom: 15px;
+}
+
+#username{
+	margin-top: 2px;
+
+}
+
+#password{
+	margin-top: 2px;
+}
+
+.checkbox{
+	margin-left:20px;
+}
+
+#validate{
+	display: none;
+	color:red;
+}
